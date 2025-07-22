@@ -52,19 +52,19 @@ function setupContactInteractions() {
     });
 }
 
-// Setup skill hover effects with random colors
+// Setup skill hover effects with professional gray variations
 function setupSkillHovers() {
     const skills = document.querySelectorAll('.skill');
     const colors = [
-        'linear-gradient(135deg, #667eea, #764ba2)',
-        'linear-gradient(135deg, #f093fb, #f5576c)',
-        'linear-gradient(135deg, #4facfe, #00f2fe)',
-        'linear-gradient(135deg, #43e97b, #38f9d7)',
-        'linear-gradient(135deg, #fa709a, #fee140)',
-        'linear-gradient(135deg, #a8edea, #fed6e3)',
-        'linear-gradient(135deg, #ff9a9e, #fecfef)',
-        'linear-gradient(135deg, #96deda, #50c9c3)',
-        'linear-gradient(135deg, #fddb92, #d1fdff)'
+        'linear-gradient(135deg, #34495e, #2c3e50)',
+        'linear-gradient(135deg, #5a6c7d, #34495e)',
+        'linear-gradient(135deg, #7f8c8d, #5a6c7d)',
+        'linear-gradient(135deg, #95a5a6, #7f8c8d)',
+        'linear-gradient(135deg, #34495e, #2c3e50)',
+        'linear-gradient(135deg, #2c3e50, #1a252f)',
+        'linear-gradient(135deg, #3d566e, #2c3e50)',
+        'linear-gradient(135deg, #4a5f7a, #34495e)',
+        'linear-gradient(135deg, #566573, #34495e)'
     ];
     
     skills.forEach((skill, index) => {
@@ -77,7 +77,7 @@ function setupSkillHovers() {
         });
         
         skill.addEventListener('mouseleave', function() {
-            this.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
+            this.style.background = 'linear-gradient(135deg, #2c3e50, #34495e)';
             this.style.transform = 'translateY(0) scale(1)';
         });
     });
@@ -174,7 +174,7 @@ function addScrollProgress() {
         left: 0;
         width: 0%;
         height: 3px;
-        background: linear-gradient(90deg, #667eea, #764ba2);
+        background: linear-gradient(90deg, #2c3e50, #34495e);
         z-index: 9999;
         transition: width 0.3s ease;
     `;
