@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setupScrollAnimations();
     setupContactInteractions();
     setupSkillHovers();
-    changeLanguage(currentLanguage);
+     changeLanguage(currentLanguage);
 });
 
 // Initialize entrance animations
