@@ -1,37 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <title>Yuri Romano - Developer Portfolio</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+    <div class="language-switcher">
+        <button type="button" class="lang-btn active" onclick="changeLanguage('en')" data-lang="en">🇬🇧 EN</button>
+        <button type="button" class="lang-btn" onclick="changeLanguage('it')" data-lang="it">🇮🇹 IT</button>
+    </div>
+    <div class="intro">
+        <h1 class="logoh1">
+            <span class="logo">Wel</span><span class="logo">come</span>
+        </h1>
+    </div>
+
+    <div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+    </div>
+
     <div class="container">
         <header>
-            <div class="profile-img">YR</div>
+            <div class="profile-img">
+                <img src="photo_2025-07-16_11-25-31.jpg" alt="profile picture">
+            </div>
             <h1>Yuri Romano</h1>
-            <p class="subtitle">Computer Science Student & Web Developer</p>
+            <p class="subtitle" data-i18n="subtitle">Computer Science Student & Web Developer</p>
             <div class="contact-links">
                 <a href="mailto:romanoyuri117@gmail.com">📧 Email</a>
                 <a href="https://www.linkedin.com/in/yuri-romano-a2587a28b/" target="_blank">💼 LinkedIn</a>
                 <a href="https://github.com/YuriRomano02" target="_blank">💻 GitHub</a>
-                <a href="tel:+393332273614">📱 +39 333 227 3614</a>
+                <a href="tel:+393332273614">📱 +393332273614</a>
             </div>
         </header>
 
         <div class="content">
             <section class="section">
-                <h2>About Me</h2>
+                <h2 data-i18n="about_title">About Me</h2>
                 <div class="about">
-                    I am a Computer Science student at the University of Genova with a strong foundation in multiple programming languages and technologies. I have proficiency in C/C++, C#, Java, JavaScript, and web development frameworks, with experience in database management using SQL.
+                    <span data-i18n="about_text">I am a Computer Science student at the University of Genova with a
+                        strong foundation in multiple programming languages and technologies. I have proficiency in
+                        C/C++, C#, Java, JavaScript, and web development frameworks, with experience in database
+                        management using SQL.</span>
                     <br><br>
-                    Currently pursuing my degree while expanding my knowledge in computer science fundamentals and advanced programming concepts. I have hands-on experience in web development and working with various programming frameworks.
+                    <span data-i18n="about_text2">Currently pursuing my degree while expanding my knowledge in computer
+                        science fundamentals and advanced programming concepts. I have hands-on experience in web
+                        development and working with various programming frameworks.</span>
                 </div>
             </section>
 
             <section class="section">
-                <h2>Technical Skills</h2>
+                <h2 data-i18n="skills_title">Technical Skills</h2>
                 <div class="skills-grid">
                     <div class="skill">HTML5</div>
                     <div class="skill">CSS3</div>
@@ -46,67 +72,75 @@
             </section>
 
             <section class="section">
-                <h2>Projects & Experience</h2>
+                <h2 data-i18n="projects_title">Projects &amp; Experience</h2>
                 <div class="projects-grid">
                     <div class="project-card">
-                        <h3 class="project-title">Full-Stack Web Application</h3>
-                        <p class="project-period">September 2023 - January 2024</p>
-                        <p class="project-description">
-                            Designed and developed a complete website using HTML, CSS, JavaScript, and PHP. The project included requirements analysis, responsive frontend implementation, backend development for data management, and performance optimization.
+                        <h3 class="project-title" data-i18n="project1_title">Full-Stack Web Application</h3>
+                        <p class="project-period" data-i18n="project1_period">September 2023 - January 2024</p>
+                        <p class="project-description" data-i18n="project1_desc">
+                            Designed and developed a complete website using HTML, CSS, JavaScript, and PHP. The project
+                            included requirements analysis, responsive frontend implementation, backend development for
+                            data management, and performance optimization.
                         </p>
                         <div class="project-tech">
                             <span class="tech-tag">HTML5</span>
                             <span class="tech-tag">CSS3</span>
                             <span class="tech-tag">JavaScript</span>
                             <span class="tech-tag">PHP</span>
-                            <span class="tech-tag">Responsive Design</span>
+                            <span class="tech-tag" data-i18n="responsive_design">Responsive Design</span>
                         </div>
                     </div>
 
                     <div class="project-card">
-                        <h3 class="project-title">C++ Mathematical Solver</h3>
-                        <p class="project-period">September 2023 - June 2024</p>
-                        <p class="project-description">
-                            Developed C++ applications for automatic mathematical problem solving. Implemented complex mathematical algorithms, user input/output management, code optimization for improved performance, and comprehensive testing.
+                        <h3 class="project-title" data-i18n="project2_title">C++ Mathematical Solver</h3>
+                        <p class="project-period" data-i18n="project2_period">September 2023 - June 2024</p>
+                        <p class="project-description" data-i18n="project2_desc">
+                            Developed C++ applications for automatic mathematical problem solving. Implemented complex
+                            mathematical algorithms, user input/output management, code optimization for improved
+                            performance, and comprehensive testing.
                         </p>
                         <div class="project-tech">
                             <span class="tech-tag">C++</span>
-                            <span class="tech-tag">Algorithms</span>
-                            <span class="tech-tag">Performance Optimization</span>
-                            <span class="tech-tag">Testing</span>
+                            <span class="tech-tag" data-i18n="algorithms">Algorithms</span>
+                            <span class="tech-tag" data-i18n="performance_opt">Performance Optimization</span>
+                            <span class="tech-tag" data-i18n="testing">Testing</span>
                         </div>
                     </div>
                 </div>
             </section>
 
             <section class="section">
-                <h2>Education</h2>
+                <h2 data-i18n="education_title">Education</h2>
                 <div class="education">
-                    <h3>🎓 University of Genova - Computer Science</h3>
-                    <p class="education-period">September 2021 - Present</p>
-                    <p>Currently studying Computer Science with solid foundations in programming. Practical skills in Java, C, C++, C#. Special interest in web development and frontend/backend technologies.</p>
+                    <h3 data-i18n="univ_title">🎓 University of Genova - Computer Science</h3>
+                    <p class="education-period" data-i18n="univ_period">September 2021 - Present</p>
+                    <p data-i18n="univ_desc">Currently studying Computer Science with solid foundations in programming. Practical skills in
+                        Java, C, C++, C#. Special interest in web development and frontend/backend technologies.</p>
                 </div>
-                
+
                 <div class="education education-certification">
-                    <h3>🏆 Web Development Certification (MIM)</h3>
-                    <p class="education-period">July 2025</p>
-                    <p>Completed advanced web development course with MIM certification, focusing on modern web technologies and best practices.</p>
+                    <h3 data-i18n="cert_title">🏆 Web Development Certification (MIM)</h3>
+                    <p class="education-period" data-i18n="cert_period">July 2025</p>
+                    <p data-i18n="cert_desc">Completed advanced web development course with MIM certification, focusing on modern web
+                        technologies and best practices.</p>
                 </div>
 
                 <div class="education education-diploma">
-                    <h3>🔬 Scientific High School Diploma</h3>
-                    <p class="education-period">September 2016 - July 2021</p>
-                    <p>Graduated with 84/100 from Liceo Scientifico Antonio Pacinotti, Levanto. Strong foundation in mathematics, physics, and sciences with excellent analytical and problem-solving skills.</p>
+                    <h3 data-i18n="diploma_title">🔬 Scientific High School Diploma</h3>
+                    <p class="education-period" data-i18n="diploma_period">September 2016 - July 2021</p>
+                    <p data-i18n="diploma_desc">Graduated with 84/100 from Liceo Scientifico Antonio Pacinotti, Levanto. Strong foundation in
+                        mathematics, physics, and sciences with excellent analytical and problem-solving skills.</p>
                 </div>
             </section>
         </div>
 
         <footer>
-            <p>&copy; 2025 Yuri Romano. Available for freelance projects and collaborations.</p>
+            <p data-i18n="footer_text">&copy; 2025 Yuri Romano. Available for freelance projects and collaborations.</p>
             <p>📍 Levanto, Italy</p>
         </footer>
     </div>
 
     <script src="script.js"></script>
 </body>
+
 </html>
