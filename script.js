@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setupScrollAnimations();
     setupContactInteractions();
     setupSkillHovers();
-     changeLanguage(currentLanguage);
+    changeLanguage(currentLanguage);
 });
 
 // Initialize entrance animations
@@ -191,35 +191,6 @@ function addScrollProgress() {
     window.addEventListener('scroll', updateProgress);
 }
 
-let intro = document.querySelector('.intro');
-let logo = document.querySelector('.logoh1');
-let logoSpan = document.querySelectorAll('.logo');
-
-window.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
-
-        logoSpan.forEach((span, idx) => {
-            setTimeout(() => {
-                span.classList.add('active');
-            }, (idx + 1) * 400);
-        });
-
-        setTimeout(() => {
-            logoSpan.forEach((span, idx) => {
-                setTimeout(() => {
-                    span.classList.remove('active'); 
-                    span.classList.add('fade');
-                }, (idx + 1) * 50)
-            })
-        }, 2000);
-
-        setTimeout(()=> {
-
-            intro.style.top = '-100vh';
-        },2300)
-    })
-})
-
 const translations = {
     en: {
         subtitle: "Computer Science Student & Web Developer",
@@ -306,6 +277,3 @@ function changeLanguage(lang) {
     
     document.documentElement.lang = lang;
 }
-
-
-
