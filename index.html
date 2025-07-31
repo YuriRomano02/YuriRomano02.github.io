@@ -10,15 +10,25 @@
 </head>
 
 <body>
-    <div class="language-switcher">
-        <button type="button" class="lang-btn active" onclick="changeLanguage('en')" data-lang="en">🇬🇧 EN</button>
-        <button type="button" class="lang-btn" onclick="changeLanguage('it')" data-lang="it">🇮🇹 IT</button>
+    <div class="intro-screen" id="introScreen">
+        <div class="intro-content">
+            <h1 class="intro-title">
+                <span class="intro-letter">W</span>
+                <span class="intro-letter">e</span>
+                <span class="intro-letter">l</span>
+                <span class="intro-letter">c</span>
+                <span class="intro-letter">o</span>
+                <span class="intro-letter">m</span>
+                <span class="intro-letter">e</span>
+            </h1>
+            <div class="intro-subtitle" data-i18n="intro_subtitle">to my portfolio</div>
+        </div>
     </div>
 
-    <div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
+    <div class="main-content" id="mainContent">
+        <div class="language-switcher">
+        <button type="button" class="lang-btn active" onclick="changeLanguage('en')" data-lang="en">🇬🇧 EN</button>
+        <button type="button" class="lang-btn" onclick="changeLanguage('it')" data-lang="it">🇮🇹 IT</button>
     </div>
 
     <div class="container">
@@ -72,35 +82,85 @@
                 <h2 data-i18n="projects_title">Projects &amp; Experience</h2>
                 <div class="projects-grid">
                     <div class="project-card">
-                        <h3 class="project-title" data-i18n="project1_title">Full-Stack Web Application</h3>
-                        <p class="project-period" data-i18n="project1_period">September 2023 - January 2024</p>
-                        <p class="project-description" data-i18n="project1_desc">
-                            Designed and developed a complete website using HTML, CSS, JavaScript, and PHP. The project
-                            included requirements analysis, responsive frontend implementation, backend development for
-                            data management, and performance optimization.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML5</span>
-                            <span class="tech-tag">CSS3</span>
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">PHP</span>
-                            <span class="tech-tag" data-i18n="responsive_design">Responsive Design</span>
+                        <div class="project-image">
+                            <div class="project-image-placeholder">
+                                🌐
+                                <div class="placeholder-text">Web App </div>
+                            </div>
+                            <img src="webapp.gif" alt="Web Application Demo" class="project-gif">
+                            <div class="project-image-overlay">
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title" data-i18n="project1_title">Full-Stack Web Application</h3>
+                            <p class="project-period" data-i18n="project1_period">September 2023 - January 2024</p>
+                            <p class="project-description" data-i18n="project1_desc">
+                                Designed and developed a complete website using HTML, CSS, JavaScript, and PHP. The project
+                                included requirements analysis, responsive frontend implementation, backend development for
+                                data management, and performance optimization.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">HTML5</span>
+                                <span class="tech-tag">CSS3</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">PHP</span>
+                                <span class="tech-tag" data-i18n="responsive_design">Responsive Design</span>
+                            </div>
                         </div>
                     </div>
 
                     <div class="project-card">
-                        <h3 class="project-title" data-i18n="project2_title">C++ Mathematical Solver</h3>
-                        <p class="project-period" data-i18n="project2_period">September 2023 - June 2024</p>
-                        <p class="project-description" data-i18n="project2_desc">
-                            Developed C++ applications for automatic mathematical problem solving. Implemented complex
-                            mathematical algorithms, user input/output management, code optimization for improved
-                            performance, and comprehensive testing.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">C++</span>
-                            <span class="tech-tag" data-i18n="algorithms">Algorithms</span>
-                            <span class="tech-tag" data-i18n="performance_opt">Performance Optimization</span>
-                            <span class="tech-tag" data-i18n="testing">Testing</span>
+                        <div class="project-image">
+                            <div class="project-image-placeholder">
+                                🧮
+                                <div class="placeholder-text">C++ Solver </div>
+                            </div>
+                            <img src="dawg-skull-emoji.gif" alt="C++ Mathematical Solver Demo" class="project-gif">
+                            <div class="project-image-overlay">
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title" data-i18n="project2_title">C++ Mathematical Solver</h3>
+                            <p class="project-period" data-i18n="project2_period">September 2023 - June 2024</p>
+                            <p class="project-description" data-i18n="project2_desc">
+                                Developed C++ applications for automatic mathematical problem solving. Implemented complex
+                                mathematical algorithms, user input/output management, code optimization for improved
+                                performance, and comprehensive testing.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">C++</span>
+                                <span class="tech-tag" data-i18n="algorithms">Algorithms</span>
+                                <span class="tech-tag" data-i18n="performance_opt">Performance Optimization</span>
+                                <span class="tech-tag" data-i18n="testing">Testing</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="project-image-placeholder">
+                                🔢
+                                <div class="placeholder-text">Calculator Demo</div>
+                            </div>
+                            <img src="calcukatir.gif" alt="HTML CSS Calculator Demo" class="project-gif">
+                            <div class="project-image-overlay">
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title" data-i18n="project3_title">Interactive Calculator</h3>
+                            <p class="project-period" data-i18n="project3_period">March 2024 - April 2024</p>
+                            <p class="project-description" data-i18n="project3_desc">
+                                Built a fully functional calculator using pure HTML, CSS, and JavaScript. Features include
+                                basic arithmetic operations, decimal calculations, keyboard support, and a clean modern interface
+                                with smooth animations and responsive design.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">HTML5</span>
+                                <span class="tech-tag">CSS3</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag" data-i18n="responsive_design">Responsive Design</span>
+                                <span class="tech-tag" data-i18n="animations">Animations</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -135,6 +195,7 @@
             <p data-i18n="footer_text">&copy; 2025 Yuri Romano. Available for freelance projects and collaborations.</p>
             <p>📍 Levanto, Italy</p>
         </footer>
+    </div>
     </div>
 
     <script src="script.js"></script>

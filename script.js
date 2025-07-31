@@ -1,13 +1,64 @@
-// DOM Content Loaded Event
 document.addEventListener('DOMContentLoaded', function () {
+    showIntroScreen();
     initializeAnimations();
     setupScrollAnimations();
     setupContactInteractions();
     setupSkillHovers();
+    setupMobileProjectInteractions();
     changeLanguage(currentLanguage);
+    
+    setTimeout(() => {
+        const mainContent = document.getElementById('mainContent');
+        if (mainContent && !mainContent.classList.contains('show')) {
+            console.log('Fallback: showing main content');
+            const introScreen = document.getElementById('introScreen');
+            if (introScreen) {
+                introScreen.style.display = 'none';
+            }
+            mainContent.classList.add('show');
+            mainContent.style.opacity = '1';
+        }
+    }, 5000);
 });
 
-// Initialize entrance animations
+function showIntroScreen() {
+    const introScreen = document.getElementById('introScreen');
+    const mainContent = document.getElementById('mainContent');
+    
+    if (!mainContent) {
+        console.error('Main content not found');
+        return;
+    }
+    
+    mainContent.style.opacity = '0';
+    mainContent.style.display = 'block';
+    
+    let introSkipped = false;
+    
+    function showMainContent() {
+        if (introSkipped) return;
+        introSkipped = true;
+        
+        if (introScreen) {
+            introScreen.classList.add('fade-out');
+        }
+        
+        setTimeout(() => {
+            if (introScreen) {
+                introScreen.style.display = 'none';
+            }
+            mainContent.classList.add('show');
+            mainContent.style.opacity = '1';
+        }, 800);
+    }
+    
+    if (introScreen) {
+        introScreen.addEventListener('click', showMainContent);
+    }
+    
+    setTimeout(showMainContent, 3000);
+}
+
 function initializeAnimations() {
     const animatedElements = document.querySelectorAll('.project-card, .skill, .education');
 
@@ -16,7 +67,6 @@ function initializeAnimations() {
     });
 }
 
-// Setup scroll-triggered animations
 function setupScrollAnimations() {
     const observerOptions = {
         threshold: 0.1,
@@ -31,14 +81,12 @@ function setupScrollAnimations() {
         });
     }, observerOptions);
 
-    // Observe elements for animation
     const elementsToObserve = document.querySelectorAll('.fade-in');
     elementsToObserve.forEach(el => {
         observer.observe(el);
     });
 }
 
-// Setup contact link interactions
 function setupContactInteractions() {
     const contactLinks = document.querySelectorAll('.contact-links a');
 
@@ -53,7 +101,6 @@ function setupContactInteractions() {
     });
 }
 
-// Setup skill hover effects with random colors
 function setupSkillHovers() {
     const skills = document.querySelectorAll('.skill');
     const colors = [
@@ -84,7 +131,6 @@ function setupSkillHovers() {
     });
 }
 
-// Smooth scrolling for navigation links (if added in future)
 function setupSmoothScrolling() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -100,7 +146,6 @@ function setupSmoothScrolling() {
     });
 }
 
-// Add typing effect to the subtitle (optional enhancement)
 function addTypingEffect() {
     const subtitle = document.querySelector('.subtitle');
     const text = subtitle.textContent;
@@ -115,11 +160,9 @@ function addTypingEffect() {
         }
     };
 
-    // Start typing effect after a short delay
     setTimeout(typeWriter, 1000);
 }
 
-// Add parallax effect to header (optional)
 function addParallaxEffect() {
     window.addEventListener('scroll', () => {
         const scrolled = window.pageYOffset;
@@ -129,19 +172,16 @@ function addParallaxEffect() {
     });
 }
 
-// Project card click handlers (for future enhancement)
 function setupProjectInteractions() {
     const projectCards = document.querySelectorAll('.project-card');
 
     projectCards.forEach(card => {
         card.addEventListener('click', function () {
-            // Future: Open project details modal or navigate to project page
             console.log('Project clicked:', this.querySelector('.project-title').textContent);
         });
     });
 }
 
-// Utility function to add new skills dynamically (for future use)
 function addSkill(skillName) {
     const skillsGrid = document.querySelector('.skills-grid');
     const newSkill = document.createElement('div');
@@ -149,11 +189,9 @@ function addSkill(skillName) {
     newSkill.textContent = skillName;
     skillsGrid.appendChild(newSkill);
 
-    // Re-setup hover effects for the new skill
     setupSkillHovers();
 }
 
-// Performance optimization: Debounce scroll events
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -166,7 +204,6 @@ function debounce(func, wait) {
     };
 }
 
-// Optional: Add scroll progress indicator
 function addScrollProgress() {
     const progressBar = document.createElement('div');
     progressBar.style.cssText = `
@@ -191,8 +228,59 @@ function addScrollProgress() {
     window.addEventListener('scroll', updateProgress);
 }
 
+function setupMobileProjectInteractions() {
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    projectCards.forEach(card => {
+        let isGifVisible = false;
+        const gif = card.querySelector('.project-gif');
+        const placeholder = card.querySelector('.project-image-placeholder');
+        const overlay = card.querySelector('.project-image-overlay');
+        
+        function showGif() {
+            card.classList.add('mobile-gif-active');
+            isGifVisible = true;
+        }
+        
+        function hideGif() {
+            card.classList.remove('mobile-gif-active');
+            isGifVisible = false;
+        }
+        
+        card.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            if (isMobileDevice()) {
+                if (isGifVisible) {
+                    hideGif();
+                } else {
+                    projectCards.forEach(otherCard => {
+                        if (otherCard !== card) {
+                            otherCard.classList.remove('mobile-gif-active');
+                        }
+                    });
+                    showGif();
+                }
+            }
+        });
+        
+        document.addEventListener('click', function(e) {
+            if (isMobileDevice() && !card.contains(e.target)) {
+                hideGif();
+            }
+        });
+    });
+}
+
+// Check if device is mobile
+function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+           || window.innerWidth <= 768;
+}
+
 const translations = {
     en: {
+        intro_subtitle: "to my portfolio",
         subtitle: "Computer Science Student & Web Developer",
         about_title: "About Me",
         about_text: "I am a Computer Science student at the University of Genova with a strong foundation in multiple programming languages and technologies. I have proficiency in C/C++, C#, Java, JavaScript, and web development frameworks, with experience in database management using SQL.",
@@ -205,10 +293,14 @@ const translations = {
         project2_title: "C++ Mathematical Solver",
         project2_period: "September 2023 - June 2024", 
         project2_desc: "Developed C++ applications for automatic mathematical problem solving. Implemented complex mathematical algorithms, user input/output management, code optimization for improved performance, and comprehensive testing.",
+        project3_title: "Interactive Calculator",
+        project3_period: "March 2024 - April 2024",
+        project3_desc: "Built a fully functional calculator using pure HTML, CSS, and JavaScript. Features include basic arithmetic operations, decimal calculations, keyboard support, and a clean modern interface with smooth animations and responsive design.",
         responsive_design: "Responsive Design",
         algorithms: "Algorithms",
         performance_opt: "Performance Optimization", 
         testing: "Testing",
+        animations: "Animations",
         education_title: "Education",
         univ_title: "🎓 University of Genova - Computer Science",
         univ_period: "September 2021 - Present",
@@ -219,9 +311,11 @@ const translations = {
         diploma_title: "🔬 Scientific High School Diploma", 
         diploma_period: "September 2016 - July 2021",
         diploma_desc: "Graduated with 84/100 from Liceo Scientifico Antonio Pacinotti, Levanto. Strong foundation in mathematics, physics, and sciences with excellent analytical and problem-solving skills.",
-        footer_text: "© 2025 Yuri Romano. Available for freelance projects and collaborations."
+        footer_text: "© 2025 Yuri Romano. Available for freelance projects and collaborations.",
+        tap_to_view: "👆 Tap to view"
     },
     it: {
+        intro_subtitle: "al mio portfolio",
         subtitle: "Studente di Informatica & Sviluppatore Web",
         about_title: "Chi Sono", 
         about_text: "Sono uno studente di Informatica all'Università di Genova con solide basi in diversi linguaggi di programmazione e tecnologie. Ho competenze in C/C++, C#, Java, JavaScript e framework di sviluppo web, con esperienza nella gestione di database utilizzando SQL.",
@@ -234,10 +328,14 @@ const translations = {
         project2_title: "Risolutore Matematico in C++",
         project2_period: "Settembre 2023 - Giugno 2024",
         project2_desc: "Sviluppato applicazioni C++ per la risoluzione automatica di problemi matematici. Implementato algoritmi matematici complessi, gestione input/output utente, ottimizzazione del codice per prestazioni migliorate e test approfonditi.",
+        project3_title: "Calcolatrice Interattiva",
+        project3_period: "Marzo 2024 - Aprile 2024",
+        project3_desc: "Realizzata una calcolatrice completamente funzionale utilizzando HTML, CSS e JavaScript puri. Include operazioni aritmetiche di base, calcoli decimali, supporto tastiera e un'interfaccia moderna e pulita con animazioni fluide e design responsive.",
         responsive_design: "Design Responsive",
         algorithms: "Algoritmi", 
         performance_opt: "Ottimizzazione Prestazioni",
         testing: "Testing",
+        animations: "Animazioni",
         education_title: "Formazione",
         univ_title: "🎓 Università di Genova - Informatica",
         univ_period: "Settembre 2021 - Presente",
@@ -248,18 +346,17 @@ const translations = {
         diploma_title: "🔬 Diploma Liceo Scientifico",
         diploma_period: "Settembre 2016 - Luglio 2021", 
         diploma_desc: "Diplomato con 84/100 al Liceo Scientifico Antonio Pacinotti, Levanto. Solide basi in matematica, fisica e scienze con eccellenti capacità analitiche e di problem-solving.",
-        footer_text: "© 2025 Yuri Romano. Disponibile per progetti freelance e collaborazioni."
+        footer_text: "© 2025 Yuri Romano. Disponibile per progetti freelance e collaborazioni.",
+        tap_to_view: "👆 Tocca per vedere"
     }
 };
 
 let currentLanguage = localStorage.getItem('portfolio-language') || 'en';
 
-// Funzione per cambiare lingua
 function changeLanguage(lang) {
     currentLanguage = lang;
     localStorage.setItem('portfolio-language', lang);
     
-    // Aggiorna i bottoni
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.remove('active');
         if (btn.dataset.lang === lang) {
@@ -267,7 +364,6 @@ function changeLanguage(lang) {
         }
     });
     
-    // Aggiorna il contenuto
     document.querySelectorAll('[data-i18n]').forEach(element => {
         const key = element.getAttribute('data-i18n');
         if (translations[lang] && translations[lang][key]) {
@@ -275,5 +371,28 @@ function changeLanguage(lang) {
         }
     });
     
+    updateMobileTapIndicators(lang);
+    
     document.documentElement.lang = lang;
+}
+
+function updateMobileTapIndicators(lang) {
+    if (window.innerWidth <= 768) {
+        const tapText = translations[lang].tap_to_view || '👆 Tap to view';
+        
+        let style = document.getElementById('mobile-tap-style');
+        if (!style) {
+            style = document.createElement('style');
+            style.id = 'mobile-tap-style';
+            document.head.appendChild(style);
+        }
+        
+        style.textContent = `
+            @media (max-width: 768px) {
+                .project-image-placeholder::after {
+                    content: '${tapText}';
+                }
+            }
+        `;
+    }
 }
