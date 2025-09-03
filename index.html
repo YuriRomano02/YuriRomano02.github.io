@@ -1,230 +1,309 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
     <title>Yuri Romano - Developer Portfolio</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <div class="intro-screen" id="introScreen">
-        <div class="intro-content">
-            <h1 class="intro-title">
-                <span class="intro-letter">W</span>
-                <span class="intro-letter">e</span>
-                <span class="intro-letter">l</span>
-                <span class="intro-letter">c</span>
-                <span class="intro-letter">o</span>
-                <span class="intro-letter">m</span>
-                <span class="intro-letter">e</span>
-            </h1>
-            <div class="intro-subtitle" data-i18n="intro_subtitle">to my portfolio</div>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#home">Yuri</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#resume" class="nav-link">Resume</a></li>
+                <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+            </ul>
+            <div class="nav-contact">
+                +39 333-227-3614
+            </div>
         </div>
-    </div>
+    </nav>
 
-    <div class="main-content" id="mainContent">
-        <div class="language-switcher">
-        <button type="button" class="lang-btn active" onclick="changeLanguage('en')" data-lang="en">🇬🇧 EN</button>
-        <button type="button" class="lang-btn" onclick="changeLanguage('it')" data-lang="it">🇮🇹 IT</button>
-    </div>
-
-    <div class="container">
-        <header>
-            <div class="profile-img">
-                <img src="photo_2025-07-16_11-25-31.jpg" alt="profile picture">
+    <section id="home" class="section hero-section">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-name">
+                    YURI<br>
+                    <span class="hero-surname">ROMANO</span>
+                </h1>
+                <p class="hero-title">Computer Science Student & Developer</p>
+                <div class="hero-buttons">
+                    <a href="#resume" class="btn btn-outline">Resume</a>
+                    <a href="#portfolio" class="btn btn-primary">Portfolio</a>
+                </div>
+                <div class="social-links">
+                    <a href="https://github.com/YuriRomano02" target="_blank">GitHub</a>
+                    <a href="https://www.linkedin.com/in/yuri-romano" target="_blank">LinkedIn</a>
+                    <a href="mailto:romanoyuri113@gmail.com">Email</a>
+                </div>
             </div>
-            <div class="header-text">
-                <h1>Yuri Romano</h1>
-                <p class="subtitle" data-i18n="subtitle">Computer Science Student & Web Developer</p>
+            <div class="hero-image">
+                <div class="workspace-mockup">
+                    <div class="monitor">
+                        <div class="screen">
+                            <div class="code-preview">
+                                <div class="code-line">const developer = {</div>
+                                <div class="code-line">  name: 'Yuri Romano',</div>
+                                <div class="code-line">  skills: ['JavaScript', 'PHP', 'React'],</div>
+                                <div class="code-line">  university: 'UniGe CS',</div>
+                                <div class="code-line">  passion: 'Full-stack development'</div>
+                                <div class="code-line">};</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="keyboard"></div>
+                    <div class="mouse"></div>
+                </div>
             </div>
-            <div class="contact-links">
-                <a href="mailto:romanoyuri117@gmail.com">📧 Email</a>
-                <a href="https://www.linkedin.com/in/yuri-romano-a2587a28b/" target="_blank">💼 LinkedIn</a>
-                <a href="https://github.com/YuriRomano02" target="_blank">💻 GitHub</a>
-                <a href="tel:+393332273614">📱 +393332273614</a>
-            </div>
-        </header>
-
-        <div class="content">
-            <section class="section">
-                <h2 data-i18n="about_title">About Me</h2>
-                <div class="about">
-                    <span data-i18n="about_text">I am a Computer Science student at the University of Genova with a
-                        strong foundation in multiple programming languages and technologies. I have proficiency in
-                        C/C++, C#, Java, JavaScript, and web development frameworks, with experience in database
-                        management using SQL.</span>
-                    <br><br>
-                    <span data-i18n="about_text2">Currently pursuing my degree while expanding my knowledge in computer
-                        science fundamentals and advanced programming concepts. I have hands-on experience in web
-                        development and working with various programming frameworks.</span>
-                </div>
-            </section>
-
-            <section class="section">
-                <h2 data-i18n="skills_title">Technical Skills</h2>
-                <div class="skills-grid">
-                    <div class="skill">HTML5</div>
-                    <div class="skill">CSS3</div>
-                    <div class="skill">JavaScript</div>
-                    <div class="skill">PHP</div>
-                    <div class="skill">C++</div>
-                    <div class="skill">Java</div>
-                    <div class="skill">C#</div>
-                    <div class="skill">SQL</div>
-                    <div class="skill">Git</div>
-                </div>
-            </section>
-
-            <section class="section">
-                <h2 data-i18n="projects_title">Projects &amp; Experience</h2>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-image">
-                            <div class="project-image-placeholder">
-                                🌐
-                                <div class="placeholder-text">Web App </div>
-                            </div>
-                            <img src="webapp.gif" alt="Web Application Demo" class="project-gif">
-                            <div class="project-image-overlay">
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title" data-i18n="project1_title">Full-Stack Web Application</h3>
-                            <p class="project-period" data-i18n="project1_period">September 2023 - January 2024</p>
-                            <p class="project-description" data-i18n="project1_desc">
-                                Designed and developed a complete website using HTML, CSS, JavaScript, and PHP. The project
-                                included requirements analysis, responsive frontend implementation, backend development for
-                                data management, and performance optimization.
-                            </p>
-                            <div class="project-tech">
-                                <span class="tech-tag">HTML5</span>
-                                <span class="tech-tag">CSS3</span>
-                                <span class="tech-tag">JavaScript</span>
-                                <span class="tech-tag">PHP</span>
-                                <span class="tech-tag" data-i18n="responsive_design">Responsive Design</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-image">
-                            <div class="project-image-placeholder">
-                                🧮
-                                <div class="placeholder-text">C++ Solver </div>
-                            </div>
-                            <img src="dawg-skull-emoji.gif" alt="C++ Mathematical Solver Demo" class="project-gif">
-                            <div class="project-image-overlay">
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title" data-i18n="project2_title">C++ Mathematical Solver</h3>
-                            <p class="project-period" data-i18n="project2_period">September 2023 - June 2024</p>
-                            <p class="project-description" data-i18n="project2_desc">
-                                Developed C++ applications for automatic mathematical problem solving. Implemented complex
-                                mathematical algorithms, user input/output management, code optimization for improved
-                                performance, and comprehensive testing.
-                            </p>
-                            <div class="project-tech">
-                                <span class="tech-tag">C++</span>
-                                <span class="tech-tag" data-i18n="algorithms">Algorithms</span>
-                                <span class="tech-tag" data-i18n="performance_opt">Performance Optimization</span>
-                                <span class="tech-tag" data-i18n="testing">Testing</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-image">
-                            <div class="project-image-placeholder">
-                                🔢
-                                <div class="placeholder-text">Calculator Demo</div>
-                            </div>
-                            <img src="calcukatir.gif" alt="HTML CSS Calculator Demo" class="project-gif">
-                            <div class="project-image-overlay">
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title" data-i18n="project3_title">Interactive Calculator</h3>
-                            <p class="project-period" data-i18n="project3_period">March 2024 - April 2024</p>
-                            <p class="project-description" data-i18n="project3_desc">
-                                Built a fully functional calculator using pure HTML, CSS, and JavaScript. Features include
-                                basic arithmetic operations, decimal calculations, keyboard support, and a clean modern interface
-                                with smooth animations and responsive design.
-                            </p>
-                            <div class="project-tech">
-                                <span class="tech-tag">HTML5</span>
-                                <span class="tech-tag">CSS3</span>
-                                <span class="tech-tag">JavaScript</span>
-                                <span class="tech-tag" data-i18n="responsive_design">Responsive Design</span>
-                                <span class="tech-tag" data-i18n="animations">Animations</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-image">
-                            <div class="project-image-placeholder">
-                                📚
-                                <div class="placeholder-text">Comic App</div>
-                            </div>
-                            <img src="dylan-dog-logo.jpeg" alt="Dylan Dog Comic Collection App Demo" class="project-gif">
-                            <div class="project-image-overlay">
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title" data-i18n="project4_title">Dylan Dog Comic Collection App</h3>
-                            <p class="project-period" data-i18n="project4_period">October 2024 - December 2024</p>
-                            <p class="project-description" data-i18n="project4_desc">
-                                Developed a mobile application to track and manage Dylan Dog comic collection. Features include
-                                collection status tracking (owned/wanted), search functionality,
-                                and intuitive user interface for comic book enthusiasts.
-                            </p>
-                            <div class="project-tech">
-                                <span class="tech-tag" data-i18n="mobile_dev">Mobile Development</span>
-                                <span class="tech-tag" data-i18n="database">Database</span>
-                                <span class="tech-tag" data-i18n="ui_design">UI Design</span>
-                                <span class="tech-tag" data-i18n="collection_mgmt">Collection Management</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="section">
-                <h2 data-i18n="education_title">Education</h2>
-                <div class="education">
-                    <h3 data-i18n="univ_title">🎓 University of Genova - Computer Science</h3>
-                    <p class="education-period" data-i18n="univ_period">September 2021 - Present</p>
-                    <p data-i18n="univ_desc">Currently studying Computer Science with solid foundations in programming. Practical skills in
-                        Java, C, C++, C#. Special interest in web development and frontend/backend technologies.</p>
-                </div>
-
-                <div class="education education-certification">
-                    <h3 data-i18n="cert_title">🏆 Web Development Certification (MIM)</h3>
-                    <p class="education-period" data-i18n="cert_period">July 2025</p>
-                    <p data-i18n="cert_desc">Completed advanced web development course with MIM certification, focusing on modern web
-                        technologies and best practices.</p>
-                </div>
-
-                <div class="education education-diploma">
-                    <h3 data-i18n="diploma_title">🔬 Scientific High School Diploma</h3>
-                    <p class="education-period" data-i18n="diploma_period">September 2016 - July 2021</p>
-                    <p data-i18n="diploma_desc">Graduated with 84/100 from Liceo Scientifico Antonio Pacinotti, Levanto. Strong foundation in
-                        mathematics, physics, and sciences with excellent analytical and problem-solving skills.</p>
-                </div>
-            </section>
         </div>
+    </section>
 
-        <footer>
-            <p data-i18n="footer_text">&copy; 2025 Yuri Romano. Available for freelance projects and collaborations.</p>
-            <p>📍 Levanto, Italy</p>
-        </footer>
-    </div>
-    </div>
+    <!-- About Section -->
+    <section id="about" class="section about-section">
+        <div class="about-container">
+            <div class="about-text">
+                <h2>ABOUT</h2>
+                <p class="about-email">romanoyuri113@gmail.com</p>
+                <p class="about-description">
+                    Studente di Informatica al 3° anno presso l'Università di Genova 
+                    con solide competenze in sviluppo software full-stack. Esperienza 
+                    pratica in web development, programmazione object-oriented e gestione 
+                    database. Appassionato di tecnologie moderne e sempre aggiornato 
+                    sulle best practices del settore. Ho sviluppato progetti 
+                    indipendenti tra cui app mobile Android, portfolio websites 
+                    e piattaforme web dinamiche.
+                </p>
+                <div class="about-location">
+                    Levanto, Liguria<br>
+                    Italy
+                </div>
+            </div>
+            <div class="about-image">
+                <div class="profile-photo">
+                    <img src="photo_2025-07-16_11-25-31.jpg" alt="Yuri Romano">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="resume" class="section resume-section">
+        <div class="resume-container">
+            <div class="skills-column">
+                <div class="skills-group">
+                    <h3>SOFTWARE SKILLS</h3>
+                    <div class="skill-item">
+                        <span class="skill-name">JavaScript</span>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">PHP</span>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">React.js</span>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Java</span>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">C#</span>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">MySQL</span>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skills-group">
+                    <h3>LANGUAGES</h3>
+                    <div class="skill-item">
+                        <span class="skill-name">Italiano</span>
+                        <div class="skill-bar">
+                            <div class="skill-fill" data-width="100"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">English</span>
+                        <div class="skill-bar">
+                            <div class="skill-fill" data-width="85"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skills-group">
+                    <h3>PERSONAL SKILLS</h3>
+                    <div class="design-skills">
+                        <div class="design-skill">Problem Solving</div>
+                        <div class="design-skill">Team Work</div>
+                        <div class="design-skill">Self Learning</div>
+                        <div class="design-skill">Project Management</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="experience-column">
+                <h3>EXPERIENCE</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">2024 - Present</div>
+                        <div class="timeline-content">
+                            <h4>Freelance Projects</h4>
+                            <p class="timeline-company">Independent Developer</p>
+                            <p>Sviluppato app mobile Android per gestione collezioni, portfolio websites responsive e piattaforme web dinamiche per gestione citazioni utilizzando Kotlin, PHP, MySQL e moderne tecnologie frontend.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2022 - 2024</div>
+                        <div class="timeline-content">
+                            <h4>University Projects</h4>
+                            <p class="timeline-company">Università di Genova</p>
+                            <p>Completato progetti in sviluppo web full-stack, algoritmi matematici in C++, laboratori networking (TCP, 3-way handshake), database design e ottimizzazione query per performance.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>EDUCATION</h3>
+                <div class="education-item">
+                    <h4>Corso di Laurea in Informatica</h4>
+                    <p class="education-school">Università degli Studi di Genova</p>
+                    <p class="education-date">2021 - In corso</p>
+                    <p class="education-details">Algoritmi e Strutture Dati, Programmazione Object-Oriented, Sviluppo Applicazioni Web, Database e Sistemi Informativi, Computer Security</p>
+                </div>
+                <div class="education-item">
+                    <h4>Diploma di Maturità Scientifica</h4>
+                    <p class="education-school">Liceo Scientifico A. Pacinotti, Levanto</p>
+                    <p class="education-date">2016 - 2021</p>
+                </div>
+            </div>
+
+            <div class="services-column">
+                <h3>WHAT CAN I DO?</h3>
+                <div class="services-list">
+                    <div class="service-item">Web Development Full-Stack</div>
+                    <div class="service-item">Mobile App Development</div>
+                    <div class="service-item">Database Design</div>
+                    <div class="service-item">API Development</div>
+                    <div class="service-item">Frontend Development</div>
+                    <div class="service-item">Backend Development</div>
+                </div>
+
+                <h3>DESIGN SKILLS</h3>
+                <div class="design-skills-grid">
+                    <div class="design-skill">UI/UX Design</div>
+                    <div class="design-skill">Responsive Design</div>
+                    <div class="design-skill">Web Development</div>
+                    <div class="design-skill">Database Architecture</div>
+                </div>
+
+                <h3>INTERESTS</h3>
+                <div class="interests-grid">
+                    <div class="interest-item">
+                        <div class="interest-icon">💻</div>
+                        <span>Coding</span>
+                    </div>
+                    <div class="interest-item">
+                        <div class="interest-icon">📱</div>
+                        <span>Mobile Dev</span>
+                    </div>
+                    <div class="interest-item">
+                        <div class="interest-icon">🌐</div>
+                        <span>Web Tech</span>
+                    </div>
+                    <div class="interest-item">
+                        <div class="interest-icon">🎮</div>
+                        <span>Gaming</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="section portfolio-section">
+        <div class="portfolio-container">
+            <h2>PORTFOLIO</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <div class="portfolio-overlay">
+                            <h4>App Mobile Android</h4>
+                            <p>Dylan Dog Comic Collection</p>
+                            <div class="portfolio-tech">
+                                <span>Kotlin</span>
+                                <span>Android Studio</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <div class="portfolio-overlay">
+                            <h4>Portfolio Website</h4>
+                            <p>Responsive Personal Portfolio</p>
+                            <div class="portfolio-tech">
+                                <span>HTML5</span>
+                                <span>CSS3</span>
+                                <span>JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <div class="portfolio-overlay">
+                            <h4>Sito Web Citazioni</h4>
+                            <p>Piattaforma Web Dinamica</p>
+                            <div class="portfolio-tech">
+                                <span>PHP</span>
+                                <span>MySQL</span>
+                                <span>JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <div class="portfolio-overlay">
+                            <h4>Mathematical Solver</h4>
+                            <p>C++ Problem Solving Apps</p>
+                            <div class="portfolio-tech">
+                                <span>C++</span>
+                                <span>Algorithms</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-links">
+                <a href="https://yuriromano02.github.io/" target="_blank" class="portfolio-link">
+                    View Portfolio Website
+                </a>
+                <a href="https://github.com/YuriRomano02" target="_blank" class="portfolio-link">
+                    GitHub Repository
+                </a>
+            </div>
+        </div>
+    </section>
 
     <script src="script.js"></script>
 </body>
-
 </html>

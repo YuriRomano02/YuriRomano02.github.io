@@ -1,412 +1,406 @@
-document.addEventListener('DOMContentLoaded', function () {
-    showIntroScreen();
-    initializeAnimations();
-    setupScrollAnimations();
-    setupContactInteractions();
-    setupSkillHovers();
-    setupMobileProjectInteractions();
-    changeLanguage(currentLanguage);
-    
-    setTimeout(() => {
-        const mainContent = document.getElementById('mainContent');
-        if (mainContent && !mainContent.classList.contains('show')) {
-            console.log('Fallback: showing main content');
-            const introScreen = document.getElementById('introScreen');
-            if (introScreen) {
-                introScreen.style.display = 'none';
-            }
-            mainContent.classList.add('show');
-            mainContent.style.opacity = '1';
-        }
-    }, 5000);
+document.addEventListener('DOMContentLoaded', function() {
+    initNavigation();
+    initScrollAnimations();
+    initSkillBars();
+    initTypewriter();
+    initMobileMenu();
 });
 
-function showIntroScreen() {
-    const introScreen = document.getElementById('introScreen');
-    const mainContent = document.getElementById('mainContent');
+function initNavigation() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('.section');
     
-    if (!mainContent) {
-        console.error('Main content not found');
-        return;
-    }
-    
-    mainContent.style.opacity = '0';
-    mainContent.style.display = 'block';
-    
-    let introSkipped = false;
-    
-    function showMainContent() {
-        if (introSkipped) return;
-        introSkipped = true;
-        
-        if (introScreen) {
-            introScreen.classList.add('fade-out');
-        }
-        
-        setTimeout(() => {
-            if (introScreen) {
-                introScreen.style.display = 'none';
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+            
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                
+                updateActiveNavLink(this);
             }
-            mainContent.classList.add('show');
-            mainContent.style.opacity = '1';
-        }, 800);
-    }
+        });
+    });
     
-    if (introScreen) {
-        introScreen.addEventListener('click', showMainContent);
-    }
-    
-    setTimeout(showMainContent, 3000);
+    window.addEventListener('scroll', throttle(updateNavigationOnScroll, 100));
 }
 
-function initializeAnimations() {
-    const animatedElements = document.querySelectorAll('.project-card, .skill, .education');
+function updateActiveNavLink(activeLink) {
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => link.classList.remove('active'));
+    activeLink.classList.add('active');
+}
 
-    animatedElements.forEach(el => {
-        el.classList.add('fade-in');
+function updateNavigationOnScroll() {
+    const sections = document.querySelectorAll('.section');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const scrollPosition = window.scrollY + 100;
+    
+    sections.forEach((section, index) => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const sectionId = section.getAttribute('id');
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            navLinks.forEach(link => link.classList.remove('active'));
+            const activeLink = document.querySelector(`[href="#${sectionId}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
     });
 }
 
-function setupScrollAnimations() {
+function initScrollAnimations() {
+    const navbar = document.querySelector('.navbar');
+    
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.style.background = 'rgba(26, 26, 26, 0.98)';
+            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.3)';
+        } else {
+            navbar.style.background = 'rgba(26, 26, 26, 0.95)';
+            navbar.style.boxShadow = 'none';
+        }
+    });
+    
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
-
+    
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
+                entry.target.classList.add('animate-in');
+                
+                if (entry.target.id === 'resume') {
+                    animateSkillBars();
+                }
+                
+                if (entry.target.id === 'home') {
+                    startTypewriter();
+                }
             }
         });
     }, observerOptions);
+    
+    document.querySelectorAll('.section').forEach(section => {
+        observer.observe(section);
+    });
+    
+    addAnimationStyles();
+}
 
-    const elementsToObserve = document.querySelectorAll('.fade-in');
-    elementsToObserve.forEach(el => {
-        observer.observe(el);
+function initSkillBars() {
+    const skillFills = document.querySelectorAll('.skill-fill');
+    skillFills.forEach(fill => {
+        const targetWidth = fill.dataset.width;
+        fill.dataset.targetWidth = targetWidth + '%';
+        fill.style.width = '0%';
     });
 }
 
-function setupContactInteractions() {
-    const contactLinks = document.querySelectorAll('.contact-links a');
-
-    contactLinks.forEach(link => {
-        link.addEventListener('mouseenter', function () {
-            this.style.transform = 'translateY(-3px) scale(1.05)';
-        });
-
-        link.addEventListener('mouseleave', function () {
-            this.style.transform = 'translateY(-2px) scale(1)';
-        });
+function animateSkillBars() {
+    const skillFills = document.querySelectorAll('.skill-fill');
+    
+    skillFills.forEach((fill, index) => {
+        setTimeout(() => {
+            const targetWidth = fill.dataset.targetWidth;
+            fill.style.width = targetWidth;
+        }, index * 200); 
     });
 }
 
-function setupSkillHovers() {
-    const skills = document.querySelectorAll('.skill');
-    const colors = [
-        'linear-gradient(135deg, #667eea, #764ba2)',
-        'linear-gradient(135deg, #f093fb, #f5576c)',
-        'linear-gradient(135deg, #4facfe, #00f2fe)',
-        'linear-gradient(135deg, #43e97b, #38f9d7)',
-        'linear-gradient(135deg, #fa709a, #fee140)',
-        'linear-gradient(135deg, #a8edea, #fed6e3)',
-        'linear-gradient(135deg, #ff9a9e, #fecfef)',
-        'linear-gradient(135deg, #96deda, #50c9c3)',
-        'linear-gradient(135deg, #fddb92, #d1fdff)'
-    ];
-
-    skills.forEach((skill, index) => {
-        const originalColor = skill.style.background;
-        const hoverColor = colors[index % colors.length];
-
-        skill.addEventListener('mouseenter', function () {
-            this.style.background = hoverColor;
-            this.style.transform = 'translateY(-8px) scale(1.05)';
-        });
-
-        skill.addEventListener('mouseleave', function () {
-            this.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
-            this.style.transform = 'translateY(0) scale(1)';
-        });
+function initTypewriter() {
+    const codeLines = document.querySelectorAll('.code-line');
+    codeLines.forEach(line => {
+        line.style.opacity = '0';
+        line.style.transform = 'translateX(-20px)';
     });
 }
 
-function setupSmoothScrolling() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
+function startTypewriter() {
+    const codeLines = document.querySelectorAll('.code-line');
+    
+    codeLines.forEach((line, index) => {
+        setTimeout(() => {
+            line.style.transition = 'all 0.5s ease';
+            line.style.opacity = '1';
+            line.style.transform = 'translateX(0)';
+        }, index * 300);
     });
 }
 
-function addTypingEffect() {
-    const subtitle = document.querySelector('.subtitle');
-    const text = subtitle.textContent;
-    subtitle.textContent = '';
-
-    let i = 0;
-    const typeWriter = () => {
-        if (i < text.length) {
-            subtitle.textContent += text.charAt(i);
-            i++;
-            setTimeout(typeWriter, 100);
+function initMobileMenu() {
+    const navContainer = document.querySelector('.nav-container');
+    const mobileMenuBtn = document.createElement('button');
+    mobileMenuBtn.className = 'mobile-menu-btn';
+    mobileMenuBtn.innerHTML = `
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+    `;
+    
+    addMobileMenuStyles();
+    
+    navContainer.appendChild(mobileMenuBtn);
+    
+    const navMenu = document.querySelector('.nav-menu');
+    let isMenuOpen = false;
+    
+    mobileMenuBtn.addEventListener('click', () => {
+        isMenuOpen = !isMenuOpen;
+        mobileMenuBtn.classList.toggle('active');
+        navMenu.classList.toggle('mobile-active');
+        document.body.classList.toggle('menu-open');
+    });
+    
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            isMenuOpen = false;
+            mobileMenuBtn.classList.remove('active');
+            navMenu.classList.remove('mobile-active');
+            document.body.classList.remove('menu-open');
+        });
+    });
+    
+    document.addEventListener('click', (e) => {
+        if (isMenuOpen && !navContainer.contains(e.target)) {
+            isMenuOpen = false;
+            mobileMenuBtn.classList.remove('active');
+            navMenu.classList.remove('mobile-active');
+            document.body.classList.remove('menu-open');
         }
-    };
-
-    setTimeout(typeWriter, 1000);
+    });
 }
 
-function addParallaxEffect() {
+function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    }
+}
+
+function addAnimationStyles() {
+    const styles = `
+        .section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .section.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .skill-fill {
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        @media (max-width: 1024px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: rgba(26, 26, 26, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem 0;
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s ease;
+                border-bottom: 1px solid var(--border-color);
+            }
+            
+            .nav-menu.mobile-active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            .nav-menu li {
+                margin: 0.5rem 0;
+            }
+            
+            .nav-link {
+                font-size: 1.1rem;
+                padding: 0.5rem 0;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                width: 30px;
+                height: 30px;
+                background: transparent;
+                border: none;
+                cursor: pointer;
+                padding: 0;
+                z-index: 1001;
+            }
+            
+            .hamburger-line {
+                width: 100%;
+                height: 3px;
+                background: var(--text-primary);
+                transition: all 0.3s ease;
+                transform-origin: center;
+            }
+            
+            .mobile-menu-btn.active .hamburger-line:nth-child(1) {
+                transform: rotate(45deg) translate(6px, 6px);
+            }
+            
+            .mobile-menu-btn.active .hamburger-line:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .mobile-menu-btn.active .hamburger-line:nth-child(3) {
+                transform: rotate(-45deg) translate(8px, -8px);
+            }
+            
+            body.menu-open {
+                overflow: hidden;
+            }
+        }
+        
+        @media (min-width: 1025px) {
+            .mobile-menu-btn {
+                display: none;
+            }
+        }
+    `;
+    
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = styles;
+    document.head.appendChild(styleSheet);
+}
+
+function addMobileMenuStyles() {
+}
+
+function initAdvancedAnimations() {
     window.addEventListener('scroll', () => {
         const scrolled = window.pageYOffset;
-        const header = document.querySelector('header');
-        const rate = scrolled * -0.5;
-        header.style.transform = `translateY(${rate}px)`;
+        const heroSection = document.querySelector('.hero-section');
+        const workspaceMockup = document.querySelector('.workspace-mockup');
+        
+        if (heroSection && workspaceMockup) {
+            workspaceMockup.style.transform = `translateY(${scrolled * 0.1}px)`;
+        }
     });
-}
-
-function setupProjectInteractions() {
-    const projectCards = document.querySelectorAll('.project-card');
-
-    projectCards.forEach(card => {
-        card.addEventListener('click', function () {
-            console.log('Project clicked:', this.querySelector('.project-title').textContent);
+    
+    const interactiveElements = document.querySelectorAll('.btn, .service-item, .interest-item');
+    
+    interactiveElements.forEach(element => {
+        element.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px)';
+        });
+        
+        element.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
         });
     });
 }
 
-function addSkill(skillName) {
-    const skillsGrid = document.querySelector('.skills-grid');
-    const newSkill = document.createElement('div');
-    newSkill.className = 'skill fade-in';
-    newSkill.textContent = skillName;
-    skillsGrid.appendChild(newSkill);
-
-    setupSkillHovers();
-}
-
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-function addScrollProgress() {
-    const progressBar = document.createElement('div');
-    progressBar.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 0%;
-        height: 3px;
-        background: linear-gradient(90deg, #667eea, #764ba2);
-        z-index: 9999;
-        transition: width 0.3s ease;
-    `;
-    document.body.appendChild(progressBar);
-
-    const updateProgress = debounce(() => {
-        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (winScroll / height) * 100;
-        progressBar.style.width = scrolled + '%';
-    }, 10);
-
-    window.addEventListener('scroll', updateProgress);
-}
-
-function setupMobileProjectInteractions() {
-    const projectCards = document.querySelectorAll('.project-card');
+function initPerformanceOptimizations() {
+    const criticalImages = [
+        'photo_2025-07-16_11-25-31.jpg'
+    ];
     
-    projectCards.forEach(card => {
-        let isGifVisible = false;
-        const gif = card.querySelector('.project-gif');
-        const placeholder = card.querySelector('.project-image-placeholder');
-        const overlay = card.querySelector('.project-image-overlay');
+    criticalImages.forEach(src => {
+        const img = new Image();
+        img.src = src;
+    });
+    
+    if ('IntersectionObserver' in window) {
+        const lazyElements = document.querySelectorAll('.lazy-load');
+        const lazyObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('loaded');
+                    lazyObserver.unobserve(entry.target);
+                }
+            });
+        });
         
-        function showGif() {
-            card.classList.add('mobile-gif-active');
-            isGifVisible = true;
-        }
-        
-        function hideGif() {
-            card.classList.remove('mobile-gif-active');
-            isGifVisible = false;
-        }
-        
-        card.addEventListener('click', function(e) {
-            e.preventDefault();
+        lazyElements.forEach(element => {
+            lazyObserver.observe(element);
+        });
+    }
+}
+
+function initAccessibility() {
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navMenu = document.querySelector('.nav-menu');
             
-            if (isMobileDevice()) {
-                if (isGifVisible) {
-                    hideGif();
-                } else {
-                    projectCards.forEach(otherCard => {
-                        if (otherCard !== card) {
-                            otherCard.classList.remove('mobile-gif-active');
-                        }
-                    });
-                    showGif();
+            if (navMenu && navMenu.classList.contains('mobile-active')) {
+                mobileMenuBtn.classList.remove('active');
+                navMenu.classList.remove('mobile-active');
+                document.body.classList.remove('menu-open');
+            }
+        }
+    });
+    
+    const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+    const modal = document.querySelector('.nav-menu');
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Tab' && modal && modal.classList.contains('mobile-active')) {
+            const focusableContent = modal.querySelectorAll(focusableElements);
+            const firstFocusableElement = focusableContent[0];
+            const lastFocusableElement = focusableContent[focusableContent.length - 1];
+            
+            if (e.shiftKey) {
+                if (document.activeElement === firstFocusableElement) {
+                    lastFocusableElement.focus();
+                    e.preventDefault();
+                }
+            } else {
+                if (document.activeElement === lastFocusableElement) {
+                    firstFocusableElement.focus();
+                    e.preventDefault();
                 }
             }
-        });
-        
-        document.addEventListener('click', function(e) {
-            if (isMobileDevice() && !card.contains(e.target)) {
-                hideGif();
-            }
-        });
+        }
     });
 }
 
-// Check if device is mobile
-function isMobileDevice() {
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
-           || window.innerWidth <= 768;
-}
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(() => {
+        initAdvancedAnimations();
+        initPerformanceOptimizations();
+        initAccessibility();
+    }, 100);
+});
 
-const translations = {
-    en: {
-        intro_subtitle: "to my portfolio",
-        subtitle: "Computer Science Student & Web Developer",
-        about_title: "About Me",
-        about_text: "I am a Computer Science student at the University of Genova with a strong foundation in multiple programming languages and technologies. I have proficiency in C/C++, C#, Java, JavaScript, and web development frameworks, with experience in database management using SQL.",
-        about_text2: "Currently pursuing my degree while expanding my knowledge in computer science fundamentals and advanced programming concepts. I have hands-on experience in web development and working with various programming frameworks.",
-        skills_title: "Technical Skills",
-        projects_title: "Projects & Experience",
-        project1_title: "Full-Stack Web Application",
-        project1_period: "September 2023 - January 2024",
-        project1_desc: "Designed and developed a complete website using HTML, CSS, JavaScript, and PHP. The project included requirements analysis, responsive frontend implementation, backend development for data management, and performance optimization.",
-        project2_title: "C++ Mathematical Solver",
-        project2_period: "September 2023 - June 2024", 
-        project2_desc: "Developed C++ applications for automatic mathematical problem solving. Implemented complex mathematical algorithms, user input/output management, code optimization for improved performance, and comprehensive testing.",
-        project3_title: "Interactive Calculator",
-        project3_period: "March 2024 - April 2024",
-        project3_desc: "Built a fully functional calculator using pure HTML, CSS, and JavaScript. Features include basic arithmetic operations, decimal calculations, keyboard support, and a clean modern interface with smooth animations and responsive design.",
-        project4_title: "Dylan Dog Comic Collection App",
-        project4_period: "October 2024 - December 2024",
-        project4_desc: "Developed a mobile application to track and manage Dylan Dog comic collection. Features include collection status tracking (owned/wanted), search functionality, and intuitive user interface for comic book enthusiasts.",
-        responsive_design: "Responsive Design",
-        algorithms: "Algorithms",
-        performance_opt: "Performance Optimization", 
-        testing: "Testing",
-        animations: "Animations",
-        mobile_dev: "Mobile Development",
-        database: "Database",
-        ui_design: "UI Design",
-        collection_mgmt: "Collection Management",
-        education_title: "Education",
-        univ_title: "🎓 University of Genova - Computer Science",
-        univ_period: "September 2021 - Present",
-        univ_desc: "Currently studying Computer Science with solid foundations in programming. Practical skills in Java, C, C++, C#. Special interest in web development and frontend/backend technologies.",
-        cert_title: "🏆 Web Development Certification (MIM)",
-        cert_period: "July 2025",
-        cert_desc: "Completed advanced web development course with MIM certification, focusing on modern web technologies and best practices.",
-        diploma_title: "🔬 Scientific High School Diploma", 
-        diploma_period: "September 2016 - July 2021",
-        diploma_desc: "Graduated with 84/100 from Liceo Scientifico Antonio Pacinotti, Levanto. Strong foundation in mathematics, physics, and sciences with excellent analytical and problem-solving skills.",
-        footer_text: "© 2025 Yuri Romano. Available for freelance projects and collaborations.",
-        tap_to_view: "👆 Tap to view"
-    },
-    it: {
-        intro_subtitle: "al mio portfolio",
-        subtitle: "Studente di Informatica & Sviluppatore Web",
-        about_title: "Chi Sono", 
-        about_text: "Sono uno studente di Informatica all'Università di Genova con solide basi in diversi linguaggi di programmazione e tecnologie. Ho competenze in C/C++, C#, Java, JavaScript e framework di sviluppo web, con esperienza nella gestione di database utilizzando SQL.",
-        about_text2: "Attualmente sto completando la mia laurea espandendo le mie conoscenze nei fondamenti dell'informatica e nei concetti avanzati di programmazione. Ho esperienza pratica nello sviluppo web e nell'utilizzo di vari framework di programmazione.",
-        skills_title: "Competenze Tecniche",
-        projects_title: "Progetti & Esperienza",
-        project1_title: "Applicazione Web Full-Stack",
-        project1_period: "Settembre 2023 - Gennaio 2024",
-        project1_desc: "Progettato e sviluppato un sito web completo utilizzando HTML, CSS, JavaScript e PHP. Il progetto ha incluso analisi dei requisiti, implementazione frontend responsive, sviluppo backend per la gestione dei dati e ottimizzazione delle prestazioni.",
-        project2_title: "Risolutore Matematico in C++",
-        project2_period: "Settembre 2023 - Giugno 2024",
-        project2_desc: "Sviluppato applicazioni C++ per la risoluzione automatica di problemi matematici. Implementato algoritmi matematici complessi, gestione input/output utente, ottimizzazione del codice per prestazioni migliorate e test approfonditi.",
-        project3_title: "Calcolatrice Interattiva",
-        project3_period: "Marzo 2024 - Aprile 2024",
-        project3_desc: "Realizzata una calcolatrice completamente funzionale utilizzando HTML, CSS e JavaScript puri. Include operazioni aritmetiche di base, calcoli decimali, supporto tastiera e un'interfaccia moderna e pulita con animazioni fluide e design responsive.",
-        project4_title: "App Collezione Dylan Dog",
-        project4_period: "Ottobre 2024 - Dicembre 2024",
-        project4_desc: "Sviluppata un'applicazione mobile per tracciare e gestire la collezione di fumetti Dylan Dog. Le caratteristiche includono il monitoraggio dello stato della collezione (posseduti/ricercati), funzionalità di ricerca e un'interfaccia utente intuitiva per gli appassionati di fumetti.",
-        responsive_design: "Design Responsive",
-        algorithms: "Algoritmi", 
-        performance_opt: "Ottimizzazione Prestazioni",
-        testing: "Testing",
-        animations: "Animazioni",
-        mobile_dev: "Sviluppo Mobile",
-        database: "Database",
-        ui_design: "Design UI",
-        collection_mgmt: "Gestione Collezione",
-        education_title: "Formazione",
-        univ_title: "🎓 Università di Genova - Informatica",
-        univ_period: "Settembre 2021 - Presente",
-        univ_desc: "Attualmente studio Informatica con solide basi nella programmazione. Competenze pratiche in Java, C, C++, C#. Interesse particolare nello sviluppo web e nelle tecnologie frontend/backend.",
-        cert_title: "🏆 Certificazione Sviluppo Web (MIM)",
-        cert_period: "Luglio 2025",
-        cert_desc: "Completato corso avanzato di sviluppo web con certificazione MIM, focalizzato su tecnologie web moderne e best practices.",
-        diploma_title: "🔬 Diploma Liceo Scientifico",
-        diploma_period: "Settembre 2016 - Luglio 2021", 
-        diploma_desc: "Diplomato con 84/100 al Liceo Scientifico Antonio Pacinotti, Levanto. Solide basi in matematica, fisica e scienze con eccellenti capacità analitiche e di problem-solving.",
-        footer_text: "© 2025 Yuri Romano. Disponibile per progetti freelance e collaborazioni.",
-        tap_to_view: "👆 Tocca per vedere"
+window.addEventListener('error', function(e) {
+    console.warn('Portfolio JS Error:', e.error);
+});
+
+window.addEventListener('resize', throttle(() => {
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    if (window.innerWidth > 1024) {
+        if (mobileMenuBtn) mobileMenuBtn.classList.remove('active');
+        if (navMenu) navMenu.classList.remove('mobile-active');
+        document.body.classList.remove('menu-open');
     }
-};
-
-let currentLanguage = localStorage.getItem('portfolio-language') || 'en';
-
-function changeLanguage(lang) {
-    currentLanguage = lang;
-    localStorage.setItem('portfolio-language', lang);
-    
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.remove('active');
-        if (btn.dataset.lang === lang) {
-            btn.classList.add('active');
-        }
-    });
-    
-    document.querySelectorAll('[data-i18n]').forEach(element => {
-        const key = element.getAttribute('data-i18n');
-        if (translations[lang] && translations[lang][key]) {
-            element.textContent = translations[lang][key];
-        }
-    });
-    
-    updateMobileTapIndicators(lang);
-    
-    document.documentElement.lang = lang;
-}
-
-function updateMobileTapIndicators(lang) {
-    if (window.innerWidth <= 768) {
-        const tapText = translations[lang].tap_to_view || '👆 Tap to view';
-        
-        let style = document.getElementById('mobile-tap-style');
-        if (!style) {
-            style = document.createElement('style');
-            style.id = 'mobile-tap-style';
-            document.head.appendChild(style);
-        }
-        
-        style.textContent = `
-            @media (max-width: 768px) {
-                .project-image-placeholder::after {
-                    content: '${tapText}';
-                }
-            }
-        `;
-    }
-}
+}, 250));
