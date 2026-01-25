@@ -5,93 +5,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yuri Romano - Portfolio</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
-    <nav class="navbar">
-        <div class="container nav-container">
+    <nav>
+        <div class="container">
             <a href="#home" class="logo">Yuri Romano</a>
-            <ul class="nav-menu">
+            <ul id="nav-menu">
                 <li><a href="#about">Chi Sono</a></li>
                 <li><a href="#skills">Skills</a></li>
-                <li><a href="#portfolio">Progetti</a></li>
+                <li><a href="#projects">Progetti</a></li>
                 <li><a href="#contact">Contatti</a></li>
             </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
     </nav>
 
-    <section id="home" class="hero">
-        <div class="container hero-container">
-            <div class="hero-text">
-                <h1>Ciao, sono Yuri.</h1>
-                <h2>Studente di Informatica & <br>Full-Stack Developer</h2>
-                <p>Sviluppo soluzioni web moderne e applicazioni funzionali.</p>
-                <div class="cta-buttons">
-                    <a href="#portfolio" class="btn btn-primary">Vedi i miei lavori</a>
-                    <a href="#contact" class="btn btn-outline">Contattami</a>
-                </div>
-            </div>
-            <div class="hero-img">
-                <img src="photo_2025-07-16_11-25-31.jpg" alt="Yuri Romano">
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="section">
+    <section id="home">
         <div class="container">
-            <h2 class="section-title">Chi Sono</h2>
-            <p class="about-text">
-                Studente di Informatica al 3° anno presso l'Università di Genova con solide competenze in sviluppo software full-stack. 
-                Ho esperienza pratica in web development, programmazione object-oriented e gestione database. 
-                Sono appassionato di tecnologie moderne e sempre aggiornato sulle best practices del settore.
-            </p>
-            <div class="info-grid">
-                <div class="info-item">
-                    <strong>Università:</strong> UniGe
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Ciao, sono Yuri</h1>
+                    <p>Studente di Informatica & Full-Stack Developer</p>
+                    <p>Sviluppo soluzioni web moderne e applicazioni funzionali</p>
+                    <div>
+                        <a href="#projects" class="btn btn-primary">Vedi i progetti</a>
+                        <a href="#contact" class="btn btn-outline">Contattami</a>
+                    </div>
                 </div>
-                <div class="info-item">
-                    <strong>Location:</strong> Levanto, Liguria
-                </div>
-                <div class="info-item">
-                    <strong>Email:</strong> romanoyuri113@gmail.com
+                <div class="hero-image">
+                    <img src="photo_2025-07-16_11-25-31.jpg" alt="Yuri Romano">
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="skills" class="section bg-light">
+    <section id="about">
         <div class="container">
-            <h2 class="section-title">Le mie Skills</h2>
+            <h2>Chi Sono</h2>
+            <div class="about-content">
+                <p>
+                    Studente di Informatica al 3° anno presso l'Università di Genova con solide competenze 
+                    in sviluppo software full-stack. Ho esperienza pratica in web development, programmazione 
+                    object-oriented e gestione database.
+                </p>
+                <div class="info-grid">
+                    <div><strong>Università:</strong> UniGe</div>
+                    <div><strong>Location:</strong> Levanto, Liguria</div>
+                    <div><strong>Email:</strong> romanoyuri117@gmail.com</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="bg-light">
+        <div class="container">
+            <h2>Le mie Skills</h2>
             <div class="skills-grid">
-                <div class="skill-category">
+                <div class="skill-card">
                     <h3>Development</h3>
-                    <ul class="skill-list">
+                    <ul>
                         <li>HTML5 & CSS3</li>
-                        <li>JavaScript (ES6+)</li>
-                        <li>PHP</li>
+                        <li>JavaScript</li>
+                        <li>PHP & MySQL</li>
                         <li>React.js</li>
-                        <li>Java & C#</li>
-                        <li>MySQL & SQL</li>
+                        <li>Java & C++</li>
+                        <li>Kotlin</li>
                     </ul>
                 </div>
-                <div class="skill-category">
+                <div class="skill-card">
                     <h3>Soft Skills</h3>
-                    <ul class="skill-list">
+                    <ul>
                         <li>Problem Solving</li>
                         <li>Lavoro in Team</li>
                         <li>Apprendimento Autonomo</li>
                         <li>Gestione Progetti</li>
                     </ul>
                 </div>
-                <div class="skill-category">
+                <div class="skill-card">
                     <h3>Lingue</h3>
-                    <ul class="skill-list">
+                    <ul>
                         <li>Italiano (Madrelingua)</li>
                         <li>Inglese (Buon livello)</li>
                     </ul>
@@ -100,60 +97,56 @@
         </div>
     </section>
 
-    <section id="portfolio" class="section">
+    <section id="projects">
         <div class="container">
-            <h2 class="section-title">Portfolio</h2>
+            <h2>Progetti</h2>
             <div class="projects-grid">
                 <div class="project-card">
-                    <div class="card-content">
-                        <h3>App Mobile Android</h3>
-                        <p class="project-tag">Kotlin • Android Studio</p>
-                        <p>Applicazione per la gestione della collezione di fumetti Dylan Dog.</p>
-                        <a href="https://github.com/YuriRomano02" class="project-link">Vedi su GitHub &rarr;</a>
-                    </div>
+                    <h3>App Dylan Dog</h3>
+                    <div class="project-tag">Kotlin • Android Studio</div>
+                    <p>Applicazione mobile per la gestione della collezione di fumetti Dylan Dog.</p>
+                    <a href="https://github.com/YuriRomano02" class="project-link">Vedi su GitHub →</a>
                 </div>
 
                 <div class="project-card">
-                    <div class="card-content">
-                        <h3>Portfolio Website</h3>
-                        <p class="project-tag">HTML • CSS • JS</p>
-                        <p>Sito personale responsive e performante.</p>
-                        <a href="https://yuriromano02.github.io/" class="project-link">Vedi Live &rarr;</a>
-                    </div>
+                    <h3>Portfolio Website</h3>
+                    <div class="project-tag">HTML • CSS • JavaScript</div>
+                    <p>Sito personale responsive e performante.</p>
+                    <a href="https://yuriromano02.github.io/" class="project-link">Vedi Live →</a>
                 </div>
 
                 <div class="project-card">
-                    <div class="card-content">
-                        <h3>Sito Web Citazioni</h3>
-                        <p class="project-tag">PHP • MySQL</p>
-                        <p>Piattaforma dinamica per la gestione e archiviazione di citazioni.</p>
-                        <a href="#" class="project-link">Dettagli &rarr;</a>
-                    </div>
+                    <h3>Sito Citazioni</h3>
+                    <div class="project-tag">PHP • MySQL</div>
+                    <p>Piattaforma dinamica per la gestione e archiviazione di citazioni.</p>
+                    <a href="https://github.com/YuriRomano02" class="project-link">Vedi su GitHub →</a>
                 </div>
-                 <div class="project-card">
-                    <div class="card-content">
-                        <h3>Mathematical Solver</h3>
-                        <p class="project-tag">C++ • Algorithms</p>
-                        <p>Applicazione C++ per la risoluzione automatica di problemi matematici.</p>
-                        <a href="#" class="project-link">Dettagli &rarr;</a>
-                    </div>
+
+                <div class="project-card">
+                    <h3>Mathematical Solver</h3>
+                    <div class="project-tag">C++ • Algorithms</div>
+                    <p>Applicazione per la risoluzione automatica di problemi matematici.</p>
+                    <a href="https://github.com/YuriRomano02" class="project-link">Vedi su GitHub →</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="section footer-section">
-        <div class="container text-center">
-            <h2 class="section-title">Contattami</h2>
+    <section id="contact">
+        <div class="container">
+            <h2>Contattami</h2>
             <p>Sei interessato a collaborare o vuoi saperne di più?</p>
-            <a href="mailto:romanoyuri113@gmail.com" class="btn btn-primary big-btn">Inviami una Email</a>
+            <a href="mailto:romanoyuri117@gmail.com" class="btn btn-primary">Inviami una Email</a>
             
-            <div class="social-footer">
+            <div class="social-links">
                 <a href="https://github.com/YuriRomano02" target="_blank">GitHub</a>
-                <a href="https://www.linkedin.com/in/yuri-romano" target="_blank">LinkedIn</a>
+                <a href="https://www.linkedin.com/in/yuri-romano-a2587a28b/" target="_blank">LinkedIn</a>
                 <span>+39 333-227-3614</span>
             </div>
-            <p class="copyright">© 2024 Yuri Romano. All rights reserved.</p>
+            
+            <footer>
+                <p>© 2025 Yuri Romano. All rights reserved.</p>
+            </footer>
         </div>
     </section>
 
