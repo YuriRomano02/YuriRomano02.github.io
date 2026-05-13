@@ -14,12 +14,13 @@ navLinks.forEach(link => {
     });
 });
 
-// Navbar shadow on scroll
-window.addEventListener('scroll', () => {
-    const nav = document.querySelector('nav');
-    if (window.scrollY > 50) {
-        nav.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-    } else {
-        nav.style.boxShadow = 'none';
-    }
-});
+// Navbar shadow on scroll (use CSS class instead of inline style)
+const nav = document.querySelector('nav');
+const toggleNavShadow = () => {
+    if (!nav) return;
+    if (window.scrollY > 50) nav.classList.add('nav-scrolled');
+    else nav.classList.remove('nav-scrolled');
+};
+
+toggleNavShadow();
+window.addEventListener('scroll', toggleNavShadow);
