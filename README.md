@@ -31,7 +31,7 @@ My personal portfolio website showcasing my projects and skills as a Computer Sc
 
 ## Contact
 
-- Email: romanoyuri117@gmail.com
+- Email: mastercontrolprogram02@gmail.com
 - LinkedIn: [Yuri Romano](https://www.linkedin.com/in/yuri-romano-a2587a28b/)
 - GitHub: [YuriRomano02](https://github.com/YuriRomano02)
 - Phone: +393332273614

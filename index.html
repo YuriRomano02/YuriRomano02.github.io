@@ -7,6 +7,56 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Boot / Loading overlay (Pip-Boy inspired) -->
+    <div id="boot-overlay" class="boot-overlay" aria-hidden="true">
+        <div class="boot-frame" role="dialog" aria-label="Caricamento portfolio">
+            <div class="boot-top">
+                <div class="boot-brand">
+                    <span class="boot-dot" aria-hidden="true"></span>
+                    <span class="boot-title">PIP-BOOT</span>
+                </div>
+                <div class="boot-meta">
+                    <span class="boot-meta-item">STATUS: OK</span>
+                    <span class="boot-meta-item">USER: YURI</span>
+                </div>
+            </div>
+
+            <div class="boot-body">
+                <div class="boot-menu" aria-label="Menu di avvio">
+                    <div class="boot-menu-title">MAIN MENU</div>
+                    <ul class="boot-menu-list">
+                        <li class="is-active">PORTFOLIO</li>
+                        <li>PROJECTS</li>
+                        <li>CONTACT</li>
+                        <li>SETTINGS</li>
+                    </ul>
+                </div>
+
+                <div class="boot-panel">
+                    <div class="boot-lines" aria-hidden="true">
+                        <div>Initializing modules…</div>
+                        <div>Loading UI…</div>
+                        <div>Syncing assets…</div>
+                        <div>Almost ready…</div>
+                    </div>
+
+                    <div class="boot-progress" aria-label="Progresso caricamento">
+                        <div class="boot-progress-label">
+                            <span>BOOTING</span>
+                            <span id="boot-percent">0%</span>
+                        </div>
+                        <div class="boot-progress-bar" aria-hidden="true">
+                            <div id="boot-progress-fill" class="boot-progress-fill"></div>
+                        </div>
+                        <div class="boot-hint">Premi un tasto o clicca per saltare</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="boot-scanlines" aria-hidden="true"></div>
+        </div>
+    </div>
+
     <nav>
         <div class="container">
             <a href="#home" class="logo">Yuri Romano</a>
@@ -29,8 +79,8 @@
             <div class="hero-content">
                 <div class="hero-text">
                     <h1>Ciao, sono Yuri</h1>
-                    <p>Studente di Informatica & Full-Stack Developer</p>
-                    <p>Sviluppo soluzioni web moderne e applicazioni funzionali</p>
+                    <p>Full-Stack Developer • Freelancer</p>
+                    <p>Creo prodotti web moderni, veloci e curati: dal frontend al backend.</p>
                     <div>
                         <a href="#projects" class="btn btn-primary">Vedi i progetti</a>
                         <a href="#contact" class="btn btn-outline">Contattami</a>
@@ -48,14 +98,13 @@
             <h2>Chi Sono</h2>
             <div class="about-content">
                 <p>
-                    Studente di Informatica al 3° anno presso l'Università di Genova con solide competenze 
-                    in sviluppo software full-stack. Ho esperienza pratica in web development, programmazione 
-                    object-oriented e gestione database.
+                    Full‑Stack Developer con focus su web app moderne, pulite e performanti. Lavoro anche come freelancer:
+                    trasformo idee in prodotti concreti, curando UX/UI, logica backend e integrazioni.
                 </p>
                 <div class="info-grid">
                     <div><strong>Università:</strong> UniGe</div>
                     <div><strong>Location:</strong> Levanto, Liguria</div>
-                    <div><strong>Email:</strong> romanoyuri117@gmail.com</div>
+                    <div><strong>Email:</strong> mastercontrolprogram02@gmail.com</div>
                 </div>
             </div>
         </div>
@@ -135,7 +184,7 @@
         <div class="container">
             <h2>Contattami</h2>
             <p>Sei interessato a collaborare o vuoi saperne di più?</p>
-            <a href="mailto:romanoyuri117@gmail.com" class="btn btn-primary">Inviami una Email</a>
+            <a href="mailto:mastercontrolprogram02@gmail.com" class="btn btn-primary">Inviami una Email</a>
             
             <div class="social-links">
                 <a href="https://github.com/YuriRomano02" target="_blank">GitHub</a>
