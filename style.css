@@ -54,11 +54,9 @@ body {
     display: grid;
     place-items: center;
     padding: 24px;
-    background: radial-gradient(900px 700px at 20% 10%, rgba(34, 197, 94, 0.12), rgba(255, 255, 255, 0) 60%),
-        radial-gradient(900px 700px at 80% 20%, rgba(34, 197, 94, 0.08), rgba(255, 255, 255, 0) 55%),
-        rgba(255, 255, 255, 0.96);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+    background: radial-gradient(900px 700px at 20% 10%, rgba(16, 185, 129, 0.18), rgba(0, 0, 0, 0) 50%),
+        radial-gradient(900px 700px at 80% 25%, rgba(52, 211, 153, 0.12), rgba(0, 0, 0, 0) 45%),
+        #030706;
     transition: opacity 280ms ease, transform 280ms ease;
 }
 
@@ -71,9 +69,9 @@ body {
 .boot-frame {
     width: min(980px, 100%);
     border-radius: 18px;
-    border: 1px solid rgba(34, 197, 94, 0.35);
-    background: rgba(255, 255, 255, 0.92);
-    box-shadow: 0 30px 90px rgba(2, 6, 23, 0.18);
+    border: 1px solid rgba(34, 197, 94, 0.55);
+    background: rgba(3, 7, 6, 0.95);
+    box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.15), 0 20px 70px rgba(0, 0, 0, 0.55);
     position: relative;
     overflow: hidden;
 }
@@ -83,9 +81,9 @@ body {
     align-items: center;
     justify-content: space-between;
     gap: 16px;
-    padding: 14px 18px;
-    border-bottom: 1px solid rgba(34, 197, 94, 0.25);
-    background: linear-gradient(180deg, rgba(34, 197, 94, 0.10), rgba(255, 255, 255, 0));
+    padding: 18px 20px;
+    border-bottom: 1px solid rgba(34, 197, 94, 0.18);
+    background: linear-gradient(180deg, rgba(34, 197, 94, 0.10), rgba(0, 0, 0, 0));
 }
 
 .boot-brand {
@@ -93,21 +91,22 @@ body {
     align-items: center;
     gap: 10px;
     font-family: "Monaco", "Courier New", monospace;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.12em;
     font-weight: 800;
-    color: #14532d;
+    color: #8ef2b2;
+    text-shadow: 0 0 10px rgba(143, 242, 178, 0.3);
 }
 
 .boot-dot {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     border-radius: 999px;
     background: #22c55e;
-    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.18);
+    box-shadow: 0 0 14px rgba(34, 197, 94, 0.45);
 }
 
 .boot-title {
-    font-size: 0.95rem;
+    font-size: 1rem;
 }
 
 .boot-meta {
@@ -117,7 +116,7 @@ body {
     justify-content: flex-end;
     font-family: "Monaco", "Courier New", monospace;
     font-size: 0.78rem;
-    color: rgba(20, 83, 45, 0.85);
+    color: rgba(174, 253, 211, 0.85);
 }
 
 .boot-body {
@@ -130,54 +129,65 @@ body {
 .boot-menu {
     border-radius: 14px;
     border: 1px solid rgba(34, 197, 94, 0.28);
-    background: rgba(240, 253, 244, 0.65);
-    padding: 14px;
+    background: rgba(13, 24, 18, 0.9);
+    padding: 16px;
     font-family: "Monaco", "Courier New", monospace;
-    color: #14532d;
+    color: #b1f5d2;
+    box-shadow: inset 0 0 0 1px rgba(34, 197, 94, 0.06);
 }
 
 .boot-menu-title {
-    font-size: 0.8rem;
-    letter-spacing: 0.09em;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
     font-weight: 800;
-    opacity: 0.9;
-    margin-bottom: 10px;
+    opacity: 0.95;
+    margin-bottom: 12px;
+    color: #8ef2b2;
 }
 
 .boot-menu-list {
     list-style: none;
     display: grid;
-    gap: 8px;
+    gap: 10px;
     font-size: 0.92rem;
 }
 
 .boot-menu-list li {
-    padding: 10px 10px;
-    border-radius: 10px;
-    border: 1px solid rgba(34, 197, 94, 0.0);
-    background: rgba(34, 197, 94, 0.0);
+    padding: 12px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(34, 197, 94, 0.08);
+    background: rgba(20, 34, 22, 0.75);
+    transition: transform 0.16s ease, border-color 0.16s ease, background-color 0.16s ease;
+}
+
+.boot-menu-list li:hover {
+    background: rgba(34, 197, 94, 0.08);
+    border-color: rgba(34, 197, 94, 0.22);
+    transform: translateX(2px);
 }
 
 .boot-menu-list li.is-active {
-    border-color: rgba(34, 197, 94, 0.35);
-    background: rgba(34, 197, 94, 0.10);
-    box-shadow: inset 0 0 0 1px rgba(34, 197, 94, 0.08);
+    border-color: rgba(34, 197, 94, 0.45);
+    background: rgba(34, 197, 94, 0.12);
+    box-shadow: inset 0 0 0 1px rgba(34, 197, 94, 0.14);
 }
 
 .boot-panel {
     border-radius: 14px;
     border: 1px solid rgba(34, 197, 94, 0.28);
-    background: rgba(255, 255, 255, 0.85);
-    padding: 14px;
+    background: rgba(8, 17, 11, 0.92);
+    padding: 16px;
     display: grid;
-    gap: 14px;
+    gap: 16px;
+    box-shadow: inset 0 0 0 1px rgba(34, 197, 94, 0.06);
 }
 
 .boot-lines {
     font-family: "Monaco", "Courier New", monospace;
-    color: rgba(20, 83, 45, 0.86);
+    color: rgba(148, 255, 191, 0.92);
     font-size: 0.86rem;
     line-height: 1.6;
+    text-shadow: 0 0 2px rgba(34, 197, 94, 0.22);
 }
 
 .boot-lines > div {
@@ -198,6 +208,15 @@ body {
     }
 }
 
+@keyframes bootPulse {
+    0%, 100% { box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.12), 0 0 25px rgba(34, 197, 94, 0.08); }
+    50% { box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.20), 0 0 40px rgba(34, 197, 94, 0.18); }
+}
+
+.boot-frame {
+    animation: bootPulse 3.2s ease-in-out infinite;
+}
+
 .boot-progress-label {
     display: flex;
     justify-content: space-between;
@@ -205,12 +224,13 @@ body {
     font-family: "Monaco", "Courier New", monospace;
     font-size: 0.82rem;
     letter-spacing: 0.08em;
-    color: #14532d;
+    color: rgba(174, 253, 211, 0.94);
     font-weight: 800;
+    text-shadow: 0 0 3px rgba(34, 197, 94, 0.35);
 }
 
 .boot-progress-bar {
-    height: 12px;
+    height: 14px;
     border-radius: 999px;
     border: 1px solid rgba(34, 197, 94, 0.35);
     background: rgba(34, 197, 94, 0.08);
@@ -220,16 +240,16 @@ body {
 .boot-progress-fill {
     height: 100%;
     width: 0%;
-    background: linear-gradient(90deg, rgba(34, 197, 94, 0.25), rgba(34, 197, 94, 0.85));
+    background: linear-gradient(90deg, rgba(34, 197, 94, 0.42), rgba(34, 197, 94, 0.95));
     border-radius: 999px;
     transition: width 120ms linear;
-    box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.10);
+    box-shadow: inset 0 0 12px rgba(34, 197, 94, 0.75);
 }
 
 .boot-hint {
     font-family: "Monaco", "Courier New", monospace;
     font-size: 0.78rem;
-    color: rgba(20, 83, 45, 0.75);
+    color: rgba(174, 253, 211, 0.72);
 }
 
 .boot-scanlines {
@@ -239,13 +259,30 @@ body {
     background:
         repeating-linear-gradient(
             180deg,
-            rgba(20, 83, 45, 0.04) 0px,
-            rgba(20, 83, 45, 0.04) 1px,
-            rgba(255, 255, 255, 0.0) 3px,
-            rgba(255, 255, 255, 0.0) 6px
+            rgba(148, 255, 191, 0.05) 0px,
+            rgba(148, 255, 191, 0.05) 1px,
+            rgba(0, 0, 0, 0.0) 3px,
+            rgba(0, 0, 0, 0.0) 6px
         );
-    mix-blend-mode: multiply;
-    opacity: 0.55;
+    mix-blend-mode: lighten;
+    opacity: 0.38;
+}
+
+@keyframes bootPulse {
+    0%, 100% { box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.12), 0 0 25px rgba(34, 197, 94, 0.08); }
+    50% { box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.20), 0 0 40px rgba(34, 197, 94, 0.18); }
+}
+
+.boot-frame {
+    animation: bootPulse 3.2s ease-in-out infinite;
+}
+
+.boot-lines {
+    font-family: "Monaco", "Courier New", monospace;
+    color: rgba(148, 255, 191, 0.92);
+    font-size: 0.86rem;
+    line-height: 1.6;
+    text-shadow: 0 0 2px rgba(34, 197, 94, 0.22);
 }
 
 @media (max-width: 768px) {
