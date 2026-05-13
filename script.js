@@ -63,19 +63,21 @@ const startBootOverlay = () => {
     setBootProgress(pct);
 
     bootTimer = window.setInterval(() => {
-        pct += Math.random() * 14 + 6;
+        pct += Math.random() * 5 + 2;
         if (pct >= 100) {
             setBootProgress(100);
             hideBootOverlay();
         } else {
             setBootProgress(pct);
         }
-    }, 140);
+    }, 200);
 
     window.setTimeout(() => {
-        setBootProgress(100);
-        hideBootOverlay();
-    }, 2600);
+        if (!bootDone) {
+            setBootProgress(100);
+            hideBootOverlay();
+        }
+    }, 5200);
 
     const skip = () => hideBootOverlay();
     bootOverlay.addEventListener('click', skip, { once: true });
