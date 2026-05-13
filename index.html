@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Boot / Loading overlay (Pip-Boy inspired) -->
+    <!-- BOOT MENU FALLOUT INSPIRED -->
     <div id="boot-overlay" class="boot-overlay" aria-hidden="true">
         <div class="boot-frame" role="dialog" aria-label="Caricamento portfolio">
             <div class="boot-top">
@@ -186,9 +186,11 @@
                 <h2>Vault Radio</h2>
                 <p>Ascolta l’atmosfera vintage di Fallout mentre navighi nel Vault.</p>
                 <div class="radio-player">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/bX-WlS3FvwE" title="Vault Radio" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <img src="fallout-radio.png" alt="Vault Radio station" class="radio-image">
+                    <button id="radio-toggle" class="radio-toggle" type="button" aria-pressed="false">Play</button>
                 </div>
-                <p class="radio-note">Clicca Play per la musica di Fallout.</p>
+                <audio id="vault-audio" src="fallout-radio.mp3" loop preload="auto"></audio>
+                <p class="radio-note">La musica parte automaticamente dopo il caricamento. Se non senti nulla, premi Play.</p>
             </div>
         </div>
     </section>

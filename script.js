@@ -29,6 +29,53 @@ const setBootProgress = (pct) => {
     if (bootFill) bootFill.style.width = `${clamped}%`;
 };
 
+const radioAudio = document.getElementById('vault-audio');
+const radioToggle = document.getElementById('radio-toggle');
+
+const updateRadioButton = () => {
+    if (!radioAudio || !radioToggle) return;
+    const isPlaying = !radioAudio.paused && !radioAudio.ended;
+    radioToggle.textContent = isPlaying ? 'Pause' : 'Play';
+    radioToggle.setAttribute('aria-pressed', String(isPlaying));
+};
+
+const startRadio = () => {
+    if (!radioAudio) return;
+    if (radioAudio.readyState >= 2) { // HAVE_CURRENT_DATA or better
+        const playPromise = radioAudio.play();
+        if (playPromise?.catch) {
+            playPromise.catch(() => {
+                updateRadioButton();
+            });
+        }
+        updateRadioButton();
+    } else {
+        radioAudio.addEventListener('canplay', () => {
+            const playPromise = radioAudio.play();
+            if (playPromise?.catch) {
+                playPromise.catch(() => {
+                    updateRadioButton();
+                });
+            }
+            updateRadioButton();
+        }, { once: true });
+    }
+};
+
+if (radioToggle) {
+    radioToggle.addEventListener('click', () => {
+        if (!radioAudio) return;
+        if (radioAudio.paused) {
+            radioAudio.play().catch(() => {
+                radioAudio.pause();
+            });
+        } else {
+            radioAudio.pause();
+        }
+        updateRadioButton();
+    });
+}
+
 const hideBootOverlay = () => {
     if (bootDone) return;
     bootDone = true;
@@ -45,6 +92,8 @@ const hideBootOverlay = () => {
     window.setTimeout(() => {
         if (bootOverlay?.parentNode) bootOverlay.parentNode.removeChild(bootOverlay);
     }, 450);
+
+    startRadio();
 };
 
 const startBootOverlay = () => {
