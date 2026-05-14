@@ -825,6 +825,31 @@ h2 {
 }
 
 /* Projects Section */
+.projects-intro {
+    color: rgba(215, 236, 181, 0.85);
+    margin-bottom: 22px;
+    max-width: 720px;
+}
+
+.projects-loading,
+.projects-error {
+    grid-column: 1 / -1;
+    color: rgba(215, 236, 181, 0.88);
+    font-family: "Monaco", "Courier New", monospace;
+    font-size: 0.95rem;
+}
+
+.projects-error {
+    color: #ffb4a8;
+}
+
+.project-card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 20px;
+    align-items: center;
+}
+
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
