@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yuri Romano - Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="#home" class="logo">Yuri Romano</a>
+            <ul id="nav-menu">
+                <li><a href="#about">Chi sono</a></li>
+                <li><a href="#skills">Competenze</a></li>
+                <li><a href="#projects">Progetti</a></li>
+                <li><a href="#contact">Contatti</a></li>
+            </ul>
+            <div class="menu-toggle" id="menu-toggle" role="button" aria-label="Apri menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home">
+        <div class="container hero-content">
+            <div class="hero-copy">
+                <span class="eyebrow">Full-stack developer</span>
+                <h1>Ciao, sono Yuri</h1>
+                <p>Sviluppo applicazioni web moderne, pulite e performanti — dal backend all'interfaccia. Lavoro anche come freelancer, trasformando idee in prodotti concreti.</p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary">Esplora i progetti</a>
+                    <a href="#contact" class="btn btn-outline">Contattami</a>
+                </div>
+            </div>
+
+            <div class="hero-image">
+                <img src="photo_2025-07-16_11-25-31.jpg" alt="Yuri Romano">
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="section-head">
+                <h2>Chi sono</h2>
+            </div>
+            <div class="about-content">
+                <p>
+                    Full-stack developer con focus su web app moderne, pulite e performanti. Trasformo idee in prodotti concreti,
+                    curando UX/UI, logica backend e integrazioni.
+                </p>
+                <div class="info-grid">
+                    <div><strong>Università</strong>UniGe</div>
+                    <div><strong>Località</strong>Levanto, Liguria</div>
+                    <div><strong>Email</strong>mastercontrolprogram02@gmail.com</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="bg-light">
+        <div class="container">
+            <div class="section-head">
+                <h2>Le mie competenze</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Sviluppo</h3>
+                    <ul>
+                        <li>HTML5 & CSS3</li>
+                        <li>JavaScript</li>
+                        <li>PHP & MySQL</li>
+                        <li>React.js</li>
+                        <li>Java & C++</li>
+                        <li>Kotlin</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Soft skills</h3>
+                    <ul>
+                        <li>Problem solving</li>
+                        <li>Lavoro in team</li>
+                        <li>Apprendimento autonomo</li>
+                        <li>Gestione progetti</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Lingue</h3>
+                    <ul>
+                        <li>Italiano (madrelingua)</li>
+                        <li>Inglese (buon livello)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <div class="section-head">
+                <h2>Progetti</h2>
+                <p>Repository pubblici dal mio profilo GitHub, aggiornati automaticamente.</p>
+            </div>
+            <div class="projects-grid" id="projects-grid" aria-live="polite">
+                <p class="projects-loading">Caricamento progetti…</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="section-head">
+                <h2>Contattami</h2>
+                <p>Sei interessato a collaborare o vuoi saperne di più?</p>
+            </div>
+            <a href="mailto:mastercontrolprogram02@gmail.com" class="btn btn-primary">Inviami una email</a>
+
+            <div class="social-links">
+                <a href="https://github.com/YuriRomano02" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/in/yuri-romano-a2587a28b/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <span>+39 333-227-3614</span>
+            </div>
+
+            <footer>
+                <p>© 2025 Yuri Romano. All rights reserved.</p>
+            </footer>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
